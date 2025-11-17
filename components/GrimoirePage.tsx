@@ -70,7 +70,7 @@ export default function GrimoirePage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-8 bg-gradient-to-br from-earth-darkGreen via-parchment-dark to-water-deep">
+    <div className="min-h-screen flex items-center justify-center p-8 bg-gradient-to-br from-earth-dark-green via-parchment-dark to-water-deep">
       {/* Grimoire Book Container */}
       <div className="relative max-w-6xl w-full perspective-1000">
         {/* Book Binding (visible in the middle) */}
@@ -115,7 +115,7 @@ export default function GrimoirePage() {
                   </p>
 
                   {/* Main text content with handwriting font */}
-                  <div className="flex-1 overflow-auto handwritten text-xl text-earth-darkGreen leading-relaxed">
+                  <div className="flex-1 overflow-auto handwritten text-xl text-earth-dark-green leading-relaxed">
                     {currentPage.content}
                   </div>
                 </div>

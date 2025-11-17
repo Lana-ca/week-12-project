@@ -24,7 +24,9 @@
   }
 
   body {
-    @apply bg-parchment-light text-earth-darkGreen font-body;
+    background-color: var(--parchment-light);
+    color: var(--earth-dark-green);
+    font-family: 'Lora', serif;
   }
 
   * {

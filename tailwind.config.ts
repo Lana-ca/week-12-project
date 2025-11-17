@@ -12,7 +12,7 @@ const config: Config = {
         // Earthy, rooted colors
         earth: {
           green: "#4A5D3F",
-          darkGreen: "#2C3E2A",
+          "dark-green": "#2C3E2A",
           red: "#8B4537",
           orange: "#C67B5C",
           brown: "#6B4423",
