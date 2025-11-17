@@ -160,7 +160,7 @@ export default function GrimoirePage() {
                 {/* Additional notes or memories */}
                 <div className="mt-8 p-6 bg-memory-golden/10 rounded border-l-4 border-memory-golden">
                   <p className="handwritten text-lg text-earth-brown">
-                    <span className="font-semibold">Ruby's Essence:</span> Sunshine at noon, smells like fresh peaches and cinnamon, sounds like gentle laughter
+                    <span className="font-semibold">Ruby&apos;s Essence:</span> Sunshine at noon, smells like fresh peaches and cinnamon, sounds like gentle laughter
                   </p>
                 </div>
 
