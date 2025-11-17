@@ -1,0 +1,429 @@
+/* Additional styles for multi-page grimoire */
+
+/* ========================================
+   HOME / TABLE OF CONTENTS
+   ======================================== */
+
+.home-intro {
+    padding: 2rem 0;
+}
+
+.home-text {
+    font-family: 'Lora', serif;
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--earth-dark-green);
+    margin-bottom: 1.5rem;
+}
+
+.vintage-quote {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    text-align: center;
+    color: var(--earth-red);
+    margin-top: 2rem;
+}
+
+.toc-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+.toc-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: rgba(212, 165, 116, 0.05);
+    border-left: 3px solid var(--memory-golden);
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.toc-item:hover {
+    background-color: rgba(212, 165, 116, 0.15);
+    border-left-width: 5px;
+    transform: translateX(5px);
+}
+
+.toc-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.toc-title {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.125rem;
+    color: var(--earth-dark-green);
+}
+
+/* ========================================
+   RECIPE PAGES
+   ======================================== */
+
+.recipe-section {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.5rem;
+    color: var(--earth-red);
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--memory-golden);
+    padding-bottom: 0.5rem;
+}
+
+.recipe-ingredients ul,
+.recipe-steps {
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--earth-dark-green);
+}
+
+.recipe-ingredients ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.recipe-ingredients li::before {
+    content: "✦ ";
+    color: var(--memory-golden);
+    margin-right: 0.5rem;
+}
+
+.recipe-ingredients strong {
+    color: var(--earth-red);
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.recipe-steps p {
+    margin-bottom: 0.75rem;
+}
+
+.recipe-notes {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(212, 165, 116, 0.1), rgba(200, 152, 88, 0.1));
+    border: 2px dashed var(--memory-golden);
+    border-radius: 0.5rem;
+}
+
+.recipe-note-title {
+    font-family: 'Crimson Text', serif;
+    font-weight: 600;
+    font-size: 1.125rem;
+    color: var(--earth-red);
+    margin-bottom: 0.5rem;
+}
+
+/* ========================================
+   LETTER PAGES
+   ======================================== */
+
+.letter-page {
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.3) 0%,
+        transparent 10%,
+        transparent 90%,
+        rgba(255, 255, 255, 0.3) 100%);
+}
+
+.letter-header {
+    margin-bottom: 2rem;
+}
+
+.letter-to {
+    font-family: 'Caveat', cursive;
+    font-size: 1.75rem;
+    color: var(--earth-dark-green);
+    margin-bottom: 1.5rem;
+}
+
+.letter-body {
+    font-family: 'Caveat', cursive;
+    font-size: 1.35rem;
+    line-height: 1.8;
+    color: var(--earth-dark-green);
+}
+
+.letter-body p {
+    margin-bottom: 1.25rem;
+}
+
+.letter-closing {
+    margin-top: 2rem;
+    text-align: right;
+    font-size: 1.5rem;
+}
+
+.letter-signature {
+    font-family: 'Caveat', cursive;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--earth-red);
+}
+
+/* ========================================
+   COMMUNITY & WISDOM LISTS
+   ======================================== */
+
+.community-list,
+.wisdom-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.community-member {
+    padding: 1rem;
+    background-color: rgba(212, 165, 116, 0.05);
+    border-left: 3px solid var(--memory-amber);
+    border-radius: 0.25rem;
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    color: var(--earth-dark-green);
+}
+
+.community-member strong {
+    color: var(--earth-red);
+}
+
+.wisdom-item {
+    padding: 1.25rem;
+    background: linear-gradient(135deg, rgba(74, 93, 63, 0.05), rgba(212, 165, 116, 0.05));
+    border-left: 4px solid var(--earth-green);
+    border-radius: 0.25rem;
+}
+
+.wisdom-quote {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.125rem;
+    font-style: italic;
+    color: var(--earth-dark-green);
+    line-height: 1.6;
+}
+
+.wisdom-quote::before {
+    content: """;
+    font-size: 2rem;
+    color: var(--memory-golden);
+    opacity: 0.5;
+}
+
+.wisdom-quote::after {
+    content: """;
+    font-size: 2rem;
+    color: var(--memory-golden);
+    opacity: 0.5;
+}
+
+/* ========================================
+   VISUAL EFFECTS
+   ======================================== */
+
+/* Warmth Effect (for recipe pages) */
+.warmth-effect {
+    background: linear-gradient(
+        135deg,
+        #F4EFE8 0%,
+        #F7E8DB 25%,
+        #F4EFE8 50%,
+        #F0DCC4 75%,
+        #F4EFE8 100%
+    );
+    box-shadow:
+        inset 0 0 100px rgba(212, 165, 116, 0.2),
+        inset 0 0 50px rgba(200, 152, 88, 0.1),
+        0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.warmth-effect::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(212, 165, 116, 0.15), transparent 70%);
+    pointer-events: none;
+}
+
+/* Music Effect (for church/music memories) */
+.music-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.music-effect::after {
+    content: '♪ ♫ ♪';
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    font-size: 3rem;
+    color: var(--memory-golden);
+    opacity: 0.1;
+    animation: float-notes 6s ease-in-out infinite;
+}
+
+@keyframes float-notes {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.1;
+    }
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+        opacity: 0.2;
+    }
+}
+
+/* Sunshine Effect (for garden/outdoor memories) */
+.sunshine-effect {
+    background: linear-gradient(
+        135deg,
+        #F4EFE8 0%,
+        #F9F0DB 25%,
+        #F4EFE8 50%,
+        #F7EDD5 75%,
+        #F4EFE8 100%
+    );
+}
+
+.sunshine-effect::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle at 75% 25%,
+        rgba(212, 165, 116, 0.3) 0%,
+        rgba(212, 165, 116, 0.1) 30%,
+        transparent 70%
+    );
+    pointer-events: none;
+    animation: sunshine-pulse 8s ease-in-out infinite;
+}
+
+@keyframes sunshine-pulse {
+    0%, 100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+/* ========================================
+   NAVIGATION ENHANCEMENTS
+   ======================================== */
+
+.nav-button:not(:disabled) {
+    animation: button-pulse 2s ease-in-out infinite;
+}
+
+@keyframes button-pulse {
+    0%, 100% {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    50% {
+        box-shadow: 0 6px 15px rgba(107, 68, 35, 0.5);
+    }
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================== */
+
+@media (max-width: 768px) {
+    .home-text {
+        font-size: 1rem;
+    }
+
+    .vintage-quote {
+        font-size: 1.25rem;
+    }
+
+    .toc-item {
+        padding: 0.75rem;
+    }
+
+    .toc-title {
+        font-size: 1rem;
+    }
+
+    .recipe-section {
+        font-size: 1.25rem;
+    }
+
+    .recipe-ingredients ul,
+    .recipe-steps {
+        font-size: 0.9rem;
+    }
+
+    .letter-to {
+        font-size: 1.5rem;
+    }
+
+    .letter-body {
+        font-size: 1.15rem;
+    }
+
+    .wisdom-quote {
+        font-size: 1rem;
+    }
+}
+
+/* ========================================
+   INSTRUCTIONS OVERLAY
+   ======================================== */
+
+.instructions {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(44, 62, 42, 0.95);
+    color: var(--parchment-light);
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    font-family: 'Lora', serif;
+    font-size: 0.875rem;
+    z-index: 200;
+    animation: fade-in-out 8s ease-in-out forwards;
+}
+
+.instructions p {
+    margin: 0.25rem 0;
+}
+
+@keyframes fade-in-out {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+    10% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    90% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+        pointer-events: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .instructions {
+        font-size: 0.75rem;
+        padding: 0.75rem 1.5rem;
+        bottom: 1rem;
+    }
+}
