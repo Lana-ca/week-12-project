@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Grimoire</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-container">
+        <!-- Title overlay -->
+        <div class="title-overlay">
+            <h1>Family Grimoire</h1>
+        </div>
+
+        <!-- Grimoire Book Container -->
+        <div class="book-wrapper">
+            <!-- Book Binding -->
+            <div class="book-binding">
+                <div class="binding-gradient"></div>
+                <div class="stitch stitch-1"></div>
+                <div class="stitch stitch-2"></div>
+                <div class="stitch stitch-3"></div>
+            </div>
+
+            <!-- Book Pages -->
+            <div class="book-pages">
+                <!-- Left Page -->
+                <div class="page page-left">
+                    <div class="page-number">Page 1</div>
+
+                    <div class="page-content">
+                        <h2 class="entry-title">A Rainy Day with Grandma Ruby</h2>
+                        <p class="entry-date">July 1985</p>
+
+                        <div class="entry-text">
+                            I remember sitting on Grandma Ruby's porch on a rainy afternoon in July. The smell of wet earth mixed with the sweet scent of her peach cobbler cooling on the windowsill. She told me stories about her childhood, about how she and her best friend used to dance in the rain, their feet splashing in the puddles.
+                            <br><br>
+                            Ruby was like sunshine, even on the cloudiest days. Her laughter could fill a whole room, warm and golden like honey dripping from a spoon. She always wore yellow – said it reminded her of hope and new beginnings.
+                            <br><br>
+                            That day, she taught me how to listen to the rain. "Every drop has a story," she said, her eyes twinkling. And I believed her, because Ruby had a way of making the ordinary feel magical.
+                        </div>
+                    </div>
+
+                    <div class="page-curl"></div>
+                </div>
+
+                <!-- Right Page -->
+                <div class="page page-right">
+                    <div class="page-number page-number-right">Page 2</div>
+
+                    <div class="page-content">
+                        <h3 class="section-title">Captured Moments</h3>
+
+                        <!-- Photo tucked into page -->
+                        <div class="photo-container">
+                            <div class="photo-frame">
+                                <div class="photo-placeholder">
+                                    <span>Grandma Ruby on her porch</span>
+                                </div>
+                                <div class="photo-corner"></div>
+                                <div class="tape tape-left"></div>
+                                <div class="tape tape-right"></div>
+                            </div>
+                            <p class="photo-caption">Grandma Ruby on her porch</p>
+                        </div>
+
+                        <!-- Essence box -->
+                        <div class="essence-box">
+                            <p class="essence-text">
+                                <span class="essence-label">Ruby's Essence:</span> Sunshine at noon, smells like fresh peaches and cinnamon, sounds like gentle laughter
+                            </p>
+                        </div>
+
+                        <!-- Rain effect -->
+                        <div class="rain-container" id="rainContainer"></div>
+                        <div class="rain-indicator">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M8 0c-1.5 0-2.5 1.5-2.5 3s1 3 2.5 3 2.5-1.5 2.5-3S9.5 0 8 0zm0 11c-1.5 0-2.5 1.5-2.5 3s1 3 2.5 3 2.5-1.5 2.5-3-1-3-2.5-3zM3 5.5C1.5 5.5.5 7 .5 8.5S1.5 11.5 3 11.5 5.5 10 5.5 8.5 4.5 5.5 3 5.5zm10 0c-1.5 0-2.5 1.5-2.5 3s1 3 2.5 3 2.5-1.5 2.5-3-1-3-2.5-3z"/>
+                            </svg>
+                            <span>The sound of rain...</span>
+                        </div>
+                    </div>
+
+                    <div class="page-curl"></div>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <button class="nav-button nav-prev" disabled aria-label="Previous page">←</button>
+            <button class="nav-button nav-next" disabled aria-label="Next page">→</button>
+
+            <!-- Bookmark -->
+            <div class="bookmark"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
