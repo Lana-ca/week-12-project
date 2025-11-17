@@ -1,0 +1,279 @@
+// Prisma schema for Family Grimoire
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Users and authentication
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  password      String
+  role          UserRole  @default(VIEWER)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  entries       Entry[]
+  people        Person[]
+
+  @@map("users")
+}
+
+enum UserRole {
+  OWNER
+  ADMIN
+  EDITOR
+  VIEWER
+}
+
+// People in the family tree and community
+model Person {
+  id                String   @id @default(cuid())
+  name              String
+  calledName        String?  // Nickname or preferred name
+  legalName         String?
+  description       String?  @db.Text
+  timeOfDay         String?  // "Sunshine at noon"
+  favoriteColor     String?
+  favoriteThings    String?  @db.Text
+  famousWords       String?  @db.Text
+
+  // Styling generated from descriptions
+  colorHue          String?  // Main color (golden, blue, etc.)
+  colorValue        String?  // Hex color code
+
+  // Audio
+  audioFiles        String[] // Array of audio file paths
+  signatureSong     String?
+
+  // Dates (can be approximate)
+  birthDate         DateTime?
+  birthDateCirca    String?  // "circa 1920s"
+  deathDate         DateTime?
+  deathDateCirca    String?
+
+  // Relationships
+  relationshipsFrom Relationship[] @relation("PersonFrom")
+  relationshipsTo   Relationship[] @relation("PersonTo")
+
+  entries           Entry[]  @relation("EntryPeople")
+
+  createdBy         User     @relation(fields: [createdById], references: [id])
+  createdById       String
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@map("people")
+}
+
+// Flexible relationship system
+model Relationship {
+  id            String           @id @default(cuid())
+  type          RelationshipType
+  customLabel   String?          // For custom relationship descriptions
+
+  // Visual styling
+  color         String           @default("#8B4537") // Default: red
+  thickness     Int              @default(2)         // 1-10, thicker = deeper bond
+
+  personFrom    Person           @relation("PersonFrom", fields: [personFromId], references: [id], onDelete: Cascade)
+  personFromId  String
+  personTo      Person           @relation("PersonTo", fields: [personToId], references: [id], onDelete: Cascade)
+  personToId    String
+
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+
+  @@unique([personFromId, personToId, type])
+  @@map("relationships")
+}
+
+enum RelationshipType {
+  BLOOD_FAMILY       // Red by default
+  CHOSEN_FAMILY      // Red, but marked as chosen
+  FRIENDSHIP         // Blue by default
+  LOVE               // White by default
+  MENTOR             // Custom color
+  NEIGHBOR           // Custom color
+  COMMUNITY          // Custom color
+  CUSTOM             // User-defined
+}
+
+// Entries (memories, recipes, journals, etc.)
+model Entry {
+  id            String       @id @default(cuid())
+  type          EntryType
+  title         String
+  content       String       @db.Text
+
+  // Optional metadata
+  date          DateTime?
+  dateCirca     String?      // "around the time of the big flood"
+  location      String?
+  latitude      Float?
+  longitude     Float?
+
+  // Sensory data (from AI prompts)
+  smell         String?
+  sound         String?
+  taste         String?
+  touch         String?
+  visual        String?
+  emotion       String?
+  season        String?
+  weather       String?
+
+  // Visual effects
+  effects       String[]     // ["rain", "sunshine", "wind"]
+  customEffect  String?      // User-uploaded effect file path
+
+  // Privacy
+  visibility    Visibility   @default(PRIVATE)
+
+  // Recipe-specific fields
+  ingredients   String?      @db.Text
+  instructions  String?      @db.Text
+  servings      Int?
+  prepTime      Int?         // minutes
+  cookTime      Int?         // minutes
+  recipeNotes   String?      @db.Text
+  recipeOrigin  String?
+
+  // Letter-specific fields
+  letterTo      String?      // Person this letter is addressed to
+
+  // Media
+  media         Media[]
+
+  // Relationships
+  people        Person[]     @relation("EntryPeople")
+  tags          Tag[]        @relation("EntryTags")
+  aiPrompts     AIPrompt[]
+
+  // Approval system
+  approved      Boolean      @default(false)
+  approvedBy    String?
+  approvedAt    DateTime?
+
+  author        User         @relation(fields: [authorId], references: [id])
+  authorId      String
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  @@map("entries")
+}
+
+enum EntryType {
+  MEMORY
+  RECIPE
+  JOURNAL
+  PHOTO
+  VIDEO
+  LETTER
+  SPIRITUAL      // Spirituals, hymns
+  SAYING         // Proverbs, sayings
+  REMEDY         // Folk remedies
+  TRADITION      // Family traditions
+  RITUAL         // Cultural rituals
+}
+
+enum Visibility {
+  PUBLIC
+  PRIVATE
+  LINK_ONLY
+  SPECIFIC_USERS
+}
+
+// Media files (photos, videos, audio)
+model Media {
+  id            String       @id @default(cuid())
+  type          MediaType
+  filePath      String
+  fileName      String
+  fileSize      Int
+  mimeType      String
+
+  // Metadata from EXIF
+  exifDate      DateTime?
+  exifLocation  String?
+  exifLatitude  Float?
+  exifLongitude Float?
+
+  // Caption and tags
+  caption       String?
+  transcription String?      @db.Text
+
+  entry         Entry        @relation(fields: [entryId], references: [id], onDelete: Cascade)
+  entryId       String
+  createdAt     DateTime     @default(now())
+
+  @@map("media")
+}
+
+enum MediaType {
+  PHOTO
+  VIDEO
+  AUDIO
+  DOCUMENT
+}
+
+// Tags and keywords
+model Tag {
+  id            String       @id @default(cuid())
+  name          String       @unique
+  color         String?
+
+  entries       Entry[]      @relation("EntryTags")
+  createdAt     DateTime     @default(now())
+
+  @@map("tags")
+}
+
+// AI-generated prompts and answers
+model AIPrompt {
+  id            String       @id @default(cuid())
+  question      String       @db.Text
+  answer        String?      @db.Text
+  category      String?      // "sensory", "person", "emotion", etc.
+
+  entry         Entry        @relation(fields: [entryId], references: [id], onDelete: Cascade)
+  entryId       String
+  createdAt     DateTime     @default(now())
+
+  @@map("ai_prompts")
+}
+
+// Communities (churches, neighborhoods, towns)
+model Community {
+  id            String       @id @default(cuid())
+  name          String
+  type          CommunityType
+  description   String?      @db.Text
+  location      String?
+  latitude      Float?
+  longitude     Float?
+
+  // Historical period
+  establishedDate DateTime?
+  establishedCirca String?
+
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  @@map("communities")
+}
+
+enum CommunityType {
+  CHURCH
+  NEIGHBORHOOD
+  TOWN
+  WORKPLACE
+  SCHOOL
+  ORGANIZATION
+}
